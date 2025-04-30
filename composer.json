@@ -1,0 +1,22 @@
+{
+    "name": "crimson-agility/module-productsinrange",
+    "description": "Module to load products by range in customer my account",
+    "type": "magento2-module",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "cristhian andrade",
+            "email": "cristhian.ctn@hotmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "CrimsonAgility\\ProductsInRange\\": ""
+        }
+    }
+}
