@@ -18,14 +18,10 @@ use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
  */
 class Collection extends AbstractCollection
 {
-    /**
-     * @inheritDoc
-     */
+    /** @inheritDoc */
     protected $_idFieldName = 'entity_id';
 
-    /**
-     * @inheritDoc
-     */
+    /** @inheritDoc */
     protected function _construct(): void
     {
         $this->_init(

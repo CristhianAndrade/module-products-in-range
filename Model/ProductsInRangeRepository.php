@@ -24,24 +24,16 @@ use Magento\Framework\Exception\CouldNotSaveException;
  */
 class ProductsInRangeRepository implements ProductsInRangeRepositoryInterface
 {
-    /**
-     * @var ProductsInRangeSearchResultsInterfaceFactory
-     */
+    /** @var ProductsInRangeSearchResultsInterfaceFactory */
     protected ProductsInRangeSearchResultsInterfaceFactory $searchResultsFactory;
 
-    /**
-     * @var CollectionProcessorInterface
-     */
+    /** @var CollectionProcessorInterface */
     protected CollectionProcessorInterface $collectionProcessor;
 
-    /**
-     * @var ProductsInRangeCollectionFactory
-     */
+    /** @var ProductsInRangeCollectionFactory */
     protected ProductsInRangeCollectionFactory $productsInRangeCollectionFactory;
 
-    /**
-     * @var ResourceProductsInRange
-     */
+    /** @var ResourceProductsInRange */
     protected ResourceProductsInRange $resource;
 
     /**

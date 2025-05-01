@@ -19,9 +19,7 @@ class ProductsInRangeValidate extends AbstractValidator
     const string INVALID_NUMBER = 'invalid_number';
     const string INVALID_HIGH_GREATER_THAN_LOW_RANGE  = 'invalid_high_greater_than_low_range';
 
-    /**
-     * @var array
-     */
+    /** @var array */
     protected array $messageTemplates = [
         self::INVALID_REQUIRED => '%1 is required',
         self::INVALID_NUMBER => '%1 need to be a number and 0 or greater',

@@ -21,19 +21,13 @@ use Magento\Directory\Model\Currency;
  */
 class Range extends Template
 {
-    /**
-     * @var ProductsInRangeSortByPriceOptions
-     */
+    /** @var ProductsInRangeSortByPriceOptions */
     protected ProductsInRangeSortByPriceOptions $options;
 
-    /**
-     * @var StoreManagerInterface
-     */
+    /** @var StoreManagerInterface */
     protected StoreManagerInterface $storeManager;
 
-    /**
-     * @var Currency
-     */
+    /** @var Currency */
     protected Currency $currency;
 
     /**
