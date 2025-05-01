@@ -15,15 +15,16 @@ use Magento\Framework\Validator\AbstractValidator;
  */
 class ProductsInRangeValidate extends AbstractValidator
 {
-    const string INVALID_REQUIRED = 'invalid_required';
-    const string INVALID_NUMBER = 'invalid_number';
-    const string INVALID_HIGH_GREATER_THAN_LOW_RANGE  = 'invalid_high_greater_than_low_range';
+    protected const int TIMES = 5;
+    protected const string INVALID_REQUIRED = 'invalid_required';
+    protected const string INVALID_NUMBER = 'invalid_number';
+    protected const string INVALID_HIGH_GREATER_THAN_LOW_RANGE  = 'invalid_high_greater_than_low_range';
 
     /** @var array */
     protected array $messageTemplates = [
         self::INVALID_REQUIRED => '%1 is required',
         self::INVALID_NUMBER => '%1 need to be a number and 0 or greater',
-        self::INVALID_HIGH_GREATER_THAN_LOW_RANGE => 'High Range need to be greater than "Low Range" and no more than 5x higher'
+        self::INVALID_HIGH_GREATER_THAN_LOW_RANGE => 'High Range need to be greater than "Low Range" and no more than ' . self::TIMES . 'x higher'
     ];
 
     /**
@@ -63,7 +64,7 @@ class ProductsInRangeValidate extends AbstractValidator
             $value['field_name'] === 'High Range' &&
             (
                 $value['field_value'] <= $value['compare_field_value'] ||
-                $value['field_value'] > (5 * $value['compare_field_value'])
+                $value['field_value'] > (self::TIMES * $value['compare_field_value'])
             )
         ) {
             $this->_addMessages(
