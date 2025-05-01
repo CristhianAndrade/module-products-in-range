@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Cristhian Andrade
+ * @copyright 2025 GPL3
+ * @license GPL-3.0
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="customer_account"/>
+    <body>
+        <referenceBlock name="page.main.title">
+            <action method="setPageTitle">
+                <argument translate="true" name="title" xsi:type="string">Products In Range</argument>
+            </action>
+        </referenceBlock>
+        <referenceContainer name="content">
+            <block name="crimson_agility.products_in_range.products.range" class="CrimsonAgility\ProductsInRange\Block\Products\Range" template="CrimsonAgility_ProductsInRange::products/range.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

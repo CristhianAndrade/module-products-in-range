@@ -1,0 +1,91 @@
+//Simple less example without variables
+
+//
+//  Common (styles-m.css)
+//  ____________________________________
+
+& when (@media-common = true) {
+    .customer-account.products-in-range {
+
+        .form-products-in-range {
+            .field {
+                .control {
+                    > span {
+                        position: absolute;
+                        margin: 7px 0 0 10px;
+                    }
+
+                    > input {
+                        padding-left: 20px;
+                    }
+                }
+            }
+        }
+
+        .product-list {
+            .table-container {
+                border: 1px solid #d1d1d1;
+
+                .table-row {
+                    display: flex;
+                    box-sizing: border-box;
+                    border-top: 1px solid #d1d1d1;
+
+                    &:first-child {
+                        border:none;
+                    }
+
+                    &.header {
+                        background: #f5f5f5;
+                        padding: 20px 0;
+                        box-sizing: border-box;
+
+                        .table-cell {
+                            font-weight: bold;
+                        }
+                    }
+
+                    .table-cell {
+                        flex: 1;
+                        max-width: 130px;
+                        box-sizing: border-box;
+                        padding: 5px 0 5px 5px;
+                        align-content: center;
+
+                        &.thumbnail {
+                            img {
+                                max-width: 80px;
+                            }
+                        }
+                    }
+
+                    .no-products {
+                        text-align: center;
+                        width: 100%;
+                        padding: 20px;
+                    }
+
+                }
+            }
+        }
+    }
+}
+
+//
+//  Mobile
+//  ____________________________________
+@media only screen and (max-width: 767px) {
+    .customer-account.products-in-range {
+        .product-list {
+            .table-container {
+                .table-row {
+                    .table-cell {
+                        &.thumbnail, &.sku, &.id {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

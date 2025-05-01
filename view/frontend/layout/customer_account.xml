@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Cristhian Andrade
+ * @copyright 2025 GPL3
+ * @license GPL-3.0
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="customer_account_navigation">
+            <block class="Magento\Customer\Block\Account\Delimiter" name="crimson_agility.products_in_range.delimiter" template="Magento_Customer::account/navigation-delimiter.phtml">
+                <arguments>
+                    <argument name="sortOrder" xsi:type="number">20</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Html\Link\Current" name="crimson_agility.products_in_range.link.option">
+                <arguments>
+                    <argument name="path" xsi:type="string">customer/products/range</argument>
+                    <argument name="label" xsi:type="string">Products In Range</argument>
+                    <argument name="sortOrder" xsi:type="number">10</argument>
+                    <argument name="navigation" xsi:type="boolean">true</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

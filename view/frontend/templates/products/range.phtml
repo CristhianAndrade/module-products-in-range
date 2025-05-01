@@ -1,0 +1,138 @@
+<?php
+/**
+ * @author Cristhian Andrade
+ * @copyright 2025 GPL3
+ * @license GPL-3.0
+ */
+
+use Magento\Framework\Escaper;
+use CrimsonAgility\ProductsInRange\Block\Products\Range as ProductRange;
+
+/**
+ * @var $escaper Escaper
+ * @var $block ProductRange
+ */
+
+$products = $block->getData('products');
+
+?>
+<div class="customer-account products-in-range">
+    <form class="form form-products-in-range"
+          action="<?= $block->getUrl('customer/products/search') ?>"
+          method="post" id="form-validate"
+          enctype="multipart/form-data"
+          data-hasrequired="<?= $escaper->escapeHtmlAttr(__('* Required Fields')) ?>"
+          autocomplete="off"
+          data-mage-init='{"validation": {}}'>
+        <fieldset class="fieldset">
+            <legend class="legend">
+                <span data-title="product-data-search"><?= $escaper->escapeHtml(__('Search Data')) ?></span>
+            </legend>
+            <div class="field low-range required">
+                <label class="label" for="low-range"><span><?= $escaper->escapeHtml(__('Low Range')) ?></span></label>
+                <div class="control">
+                    <span><?= $escaper->escapeHtmlAttr($block->getCurrentCurrencySymbol()); ?></span>
+                    <input type="text" name="low_range" id="low-range"
+                           value="<?= $escaper->escapeHtmlAttr($block->getData('low_range')) ?>"
+                           title="<?= $escaper->escapeHtmlAttr(__('Low Range')) ?>"
+                           class="input-text"
+                           data-validate="{required:true,'validate-greater-than-zero':true,'validate-number':true}" />
+                </div>
+            </div>
+            <div class="field high-range required">
+                <label class="label" for="high-range"><span><?= $escaper->escapeHtml(__('High Range')) ?></span></label>
+                <div class="control">
+                    <span class="symbol"><?= $escaper->escapeHtmlAttr($block->getCurrentCurrencySymbol()); ?></span>
+                    <input type="text" name="high_range" id="high-range"
+                           value="<?= $escaper->escapeHtmlAttr($block->getData('high_range')) ?>"
+                           title="<?= $escaper->escapeHtmlAttr(__('High Range')) ?>"
+                           class="input-text"
+                           data-validate="{required:true,'validate-greater-than-zero':true,'validate-number':true,'validate-greater-than-field':'#low-range'}" />
+                </div>
+            </div>
+            <div class="field sort-by-price required">
+                <label class="label" for="sort-by-price"><span><?= $escaper->escapeHtml(__('Sort By Price')) ?></span></label>
+                <div class="control">
+                    <select name="sort_by" id="sort-by-price">
+                        <?php foreach($this->getSortByPriceOptions() as $option): ?>
+                            <option value="<?= $escaper->escapeHtmlAttr($option['value']) ?>"
+                                <?= ($option['value'] === $block->getData('sort_by'))? 'selected' : ''; ?>
+                            ><?= $escaper->escapeHtmlAttr($option['label']) ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+            </div>
+            <div class="actions-toolbar">
+                <div class="primary">
+                    <button type="submit" class="action search primary" title="<?= $escaper->escapeHtmlAttr(__('Search')) ?>">
+                        <span><?= $escaper->escapeHtml(__('Search')) ?></span>
+                    </button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+
+    <div class="product-list">
+        <div class="table-container">
+            <div class="table-row header">
+                <div class="table-cell id"><?= $escaper->escapeHtml(__('ID')) ?></div>
+                <div class="table-cell thumbnail"><?= $escaper->escapeHtml(__('Thumbnail')) ?></div>
+                <div class="table-cell"><?= $escaper->escapeHtml(__('Name')) ?></div>
+                <div class="table-cell sku"><?= $escaper->escapeHtml(__('SKU')) ?></div>
+                <div class="table-cell"><?= $escaper->escapeHtml(__('Price')) ?></div>
+                <div class="table-cell"><?= $escaper->escapeHtml(__('Qty')) ?></div>
+                <div class="table-cell"><?= $escaper->escapeHtml(__('Link')) ?></div>
+            </div>
+
+            <div class="table-data" id="table-data-load-content">
+            <?php if (isset($products) && count($products) > 0): ?>
+                <?php foreach ($products as $product): ?>
+                    <div class="table-row">
+                        <div class="table-cell id"><?= $escaper->escapeHtml($product->getId()) ?></div>
+                        <div class="table-cell thumbnail">
+                            <?php $url = ($product->getThumbnail())?:$block->getViewFileUrl('CrimsonAgility_ProductsInRange::images/empty.png') ?>
+                            <img src="<?= $url ?>" alt="<?= $escaper->escapeHtml($product->getName()) ?>" />
+                        </div>
+                        <div class="table-cell"><?= $escaper->escapeHtml($product->getName()) ?></div>
+                        <div class="table-cell sku"><?= $escaper->escapeHtml($product->getSku()) ?></div>
+                        <div class="table-cell">
+                            <?=
+                               $escaper->escapeHtmlAttr($block->getCurrentCurrencySymbol()) .
+                                $escaper->escapeHtml($product->getPrice())
+                            ?>
+                        </div>
+                        <div class="table-cell"><?= $escaper->escapeHtml($product->getQty()) ?></div>
+                        <div class="table-cell">
+                            <a href="<?= $escaper->escapeHtml($product->getLink()) ?>" target="_blank">
+                                <?= $escaper->escapeHtml(__('Open')) ?>
+                            </a>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            <?php else : ?>
+                <div class="table-row">
+                    <span class="no-products"><?= $escaper->escapeHtml(__('No Data')) ?></span>
+                </div>
+            <?php endif; ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "#form-validate": {
+            "validation": {}
+        },
+        "*": {
+            "CrimsonAgility_ProductsInRange/js/validation/greater-than-field": {},
+            "CrimsonAgility_ProductsInRange/js/range-form-submit": {
+                "formSelector": "#form-validate",
+                "messagesSelector": "#maincontent .page.messages .messages",
+                "contentSelector": "#table-data-load-content",
+                "symbol": ".symbol",
+                "defaultProductImage": "<?= $block->getViewFileUrl('CrimsonAgility_ProductsInRange::images/empty.png') ?>"
+            }
+        }
+    }
+</script>

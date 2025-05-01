@@ -1,8 +1,10 @@
 <?php
 /**
- * Copyright ©  All rights reserved.
- * See COPYING.txt for license details.
+ * @author Cristhian Andrade
+ * @copyright 2025 GPL3
+ * @license GPL-3.0
  */
+
 declare(strict_types=1);
 
 use Magento\Framework\Component\ComponentRegistrar;

@@ -1,5 +1,5 @@
 {
-    "name": "crimson-agility/module-productsinrange",
+    "name": "crimson-agility/module-products-in-range",
     "description": "Module to load products by range in customer my account",
     "type": "magento2-module",
     "license": "GPL-3.0",
@@ -10,7 +10,10 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
+    "require": {
+        "php": "~8.3.*||~8.4.*",
+        "magento/module-customer": "~103.0.*"
+    },
     "autoload": {
         "files": [
             "registration.php"

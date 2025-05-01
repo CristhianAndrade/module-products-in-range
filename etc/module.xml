@@ -1,4 +1,16 @@
 <?xml version="1.0" ?>
+<!--
+/**
+ * @author Cristhian Andrade
+ * @copyright 2025 GPL3
+ * @license GPL-3.0
+ */
+-->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
-	<module name="CrimsonAgility_ProductsInRange"/>
+	<module name="CrimsonAgility_ProductsInRange" setup_version="1.0.0">
+        <sequence>
+            <module name="Magento_Webapi" />
+            <module name="Magento_Customer" />
+        </sequence>
+    </module>
 </config>
